@@ -87,9 +87,9 @@ def get_company_details(director_id):
                 try:
 
                     # Check if the insolvency_date is in last 5 years or in 12 months after resignation
-                    num_months_from_resignation1 = (insolvency_date.year - resigned_date.year) * 12 + (
+                    num_months_from_resignation = (insolvency_date.year - resigned_date.year) * 12 + (
                                 insolvency_date.year - resigned_date.year)
-                    if (num_months_from_today < 60) or (num_months_from_resignation < 12):
+                    if (num_months_from_today < 60) and (num_months_from_today > 0) and (num_months_from_resignation < 12):
                         insolvency_flag = True
 
                     details.append([company_no, resigned_date, insolvency_date, flag])
