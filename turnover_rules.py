@@ -1,7 +1,7 @@
-hostname = 'lf-prod-replica.cahzexplvjof.eu-west-2.rds.amazonaws.com'
-username = 'lf_datascience'
-password = 'row9s5s3B0LAP7N21'
-database = 'TheSpaceship'
+hostname = host
+username = user_name
+password = password
+database = db
 import psycopg2
 import pandas.io.sql as sqlio
 
