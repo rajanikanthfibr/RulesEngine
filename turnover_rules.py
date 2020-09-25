@@ -8,10 +8,6 @@ import pandas.io.sql as sqlio
 conn = psycopg2.connect(host=hostname, user=username, password=password, dbname=database)
 cur = conn.cursor()
 
-sql = "SELECT * FROM bank_transactions limit 10"
-dat = sqlio.read_sql_query(sql, conn)
-
-
 def get_bearer_token():
     '''
     Function to get the Auth bearer token for CATO and CAIS
