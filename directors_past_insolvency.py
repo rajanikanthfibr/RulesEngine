@@ -11,13 +11,16 @@ def company_directors(company_number):
                  auth=auth_cred)
     j = r.json()
     director_id=[]
-    for doc in j['items']:
-        if doc['officer_role']=='director':
-            temp=doc['links']['officer']['appointments']
-            temp=temp.replace('/officers/','')
-            temp=temp.replace('/appointments','')
-            director_id.append(temp)
-    return director_id
+    try:
+        for doc in j['items']:
+            if doc['officer_role']=='director':
+                temp=doc['links']['officer']['appointments']
+                temp=temp.replace('/officers/','')
+                temp=temp.replace('/appointments','')
+                director_id.append(temp)
+    except:
+        pass
+    return director_id if len(director_id) > 0 else None
 
 
 def insolvency_dates(company_no):
@@ -112,8 +115,10 @@ def get_insolvency_flag(company_number):
     # Get the list of directors
     directors=company_directors(company_number)
     flag= False
-    for director in directors:
-        if get_company_details(director)[0]==True:
-            flag=True
+    try:
+        for director in directors:
+            if get_company_details(director)[0]==True:
+                flag=True
+    except:
+        pass
     return flag
-
